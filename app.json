@@ -1,0 +1,16 @@
+{
+  "name": "hackfun",
+  "description": "Hack fun!",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
