@@ -4,13 +4,18 @@ const http = require('http')
 const faces = require('cool-ascii-faces').faces
 
 const PORT = process.env.PORT || 5000
+var StatsD = require('node-dogstatsd').StatsD;
+var dogstatsd = new StatsD();
 
 var app = express()
 app.use(express.static(__dirname + '/html'))
 // .use(express.static(path.join(__dirname, 'public')))
 // .set('views', path.join(__dirname, 'views'))
 // .set('view engine', 'ejs')
-app.get('/', (req,res) => res.sendFile('index.html'))
+app.get('/', (req,res) => {
+  dogstatsd.increment('page.views')
+  res.sendFile('index.html')
+})
 
 app.get('/hello', (req, res) => res.send('Hello (¬‿¬) !'))
 
